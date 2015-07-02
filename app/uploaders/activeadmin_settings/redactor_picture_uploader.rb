@@ -1,6 +1,8 @@
 # encoding: utf-8
 class ActiveadminSettings::RedactorPictureUploader < CarrierWave::Uploader::Base
 
+  storage :fog
+
   # Include RMagick or ImageScience support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
