@@ -18,9 +18,9 @@
               class="index_table index">
         <thead>
           <tr>
-            <th class=""><%= ActiveadminSettings::Setting.human_attribute_name(:name) %></th>
-            <th class=""><%= ActiveadminSettings::Setting.human_attribute_name(:value) %></th>
-            <th class=""></th>
+            <th><%= ActiveadminSettings::Setting.human_attribute_name(:name) %></th>
+            <th><%= ActiveadminSettings::Setting.human_attribute_name(:value) %></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -32,23 +32,24 @@
             </td>
             <td>
               <div class="form <%= setting.type %>">
-                <%= semantic_form_for setting,
-                    :method => :put,
-                    :url    => "/admin/settings/#{setting.id}" do |f| %>
+                <%= semantic_form_for setting, method: :put, url: "/admin/settings/#{setting.id}" do |f| %>
                   <%= f.inputs do %>
                     <%= f.input :locale, as: :hidden, input_html: { value: locale } %>
                     <% case setting.type %>
                     <% when "file" %>
-                      <%= f.input :file, :hint => setting.value %>
-                      <%= f.input :remove_file, :as => :boolean %>
+                      <%= f.input :file, hint: setting.value %>
+                      <%= f.input :remove_file, as: :boolean %>
                     <% when "text" %>
-                      <%= f.input :string, :as => :text %>
+                      <%= f.input :string, as: :text,
+                        placeholder: "#{t '.default' }: " + setting.default_value(locale) %>
                     <% when "html" %>
-                      <%= f.input :string,
-                                  :as => :text,
-                                  :input_html => { :class => "settings-redactor" } %>
+                      <%= f.input :string, as: :text,
+                        input_html: { class: "settings-redactor" },
+                        placeholder: "#{t '.default' }: " + setting.default_value(locale) %>
+                    <% when "color" %>
+                      <%= f.input :string, as: :color %>
                     <% else %>
-                      <%= f.input :string, :placeholder => "#{t '.default' }: " + setting.default_value(locale) %>
+                      <%= f.input :string, placeholder: "#{t '.default' }: " + setting.default_value(locale) %>
                     <% end %>
                   <% end %>
                 <% end %>

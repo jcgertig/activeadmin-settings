@@ -5,12 +5,12 @@
         class="index_table index">
   <thead>
     <tr>
-      <th class=""><%= AdminUser.human_attribute_name(:email) %></th>
-      <th class=""></th>
+      <th><%= AdminUser.human_attribute_name(:email) %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <%= render :partial => "admin", :collection => admins %>
-    <%= render :partial => "admin_form" %>
+    <%= render partial: "admin", collection: admins %>
+    <%= render partial: "admin_form" %>
   </tbody>
 </table>
