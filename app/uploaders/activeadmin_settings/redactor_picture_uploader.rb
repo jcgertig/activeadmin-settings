@@ -3,6 +3,10 @@ class ActiveadminSettings::RedactorPictureUploader < CarrierWave::Uploader::Base
 
   storage :fog
 
+  def self.fog_public
+    true
+  end
+
   # Include RMagick or ImageScience support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
