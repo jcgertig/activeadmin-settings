@@ -1,0 +1,71 @@
+<div class="inner_tabs">
+  <% if I18n.available_locales.length > 1 %>
+    <ul class="tabs table_tools_segmented_control">
+      <% I18n.available_locales.each do |locale| %>
+        <li>
+          <a class="table_tools_button" href="#<%= slug %>-<%= locale %>"><%=t locale, scope: [:locales] %></a>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% I18n.available_locales.each do |locale| %>
+    <div id="<%= slug %>-<%= locale %>">
+      <table  border="0"
+              cellspacing="0"
+              cellpadding="0"
+              id="settings"
+              class="index_table index">
+        <thead>
+          <tr>
+            <th><%= ActiveadminSettings::Setting.human_attribute_name(:name) %></th>
+            <th><%= ActiveadminSettings::Setting.human_attribute_name(:value) %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% settings.select{ |s| (s.try(:locale).to_sym || I18n.default_locale) == locale}.each do |setting| %>
+          <tr class="odd option-type-<%= setting.type %>" id="setting_<%= setting.id %>">
+            <td>
+              <strong><%= setting.name %></strong></br>
+              <em><%= setting.description %></em>
+            </td>
+            <td>
+              <div class="form <%= setting.type %>">
+                <%= semantic_form_for setting, method: :put, url: "/admin/settings/#{setting.id}" do |f| %>
+                  <%= f.inputs do %>
+                    <%= f.input :locale, as: :hidden, input_html: { value: locale } %>
+                    <% case setting.type %>
+                    <% when "file" %>
+                      <%= f.input :file, hint: setting.value %>
+                      <%= f.input :remove_file, as: :boolean %>
+                    <% when "text" %>
+                      <%= f.input :string, as: :text,
+                        placeholder: "#{t '.default' }: " + setting.default_value(locale) %>
+                    <% when "html" %>
+                      <%= f.input :string, as: :text,
+                        input_html: { class: "settings-redactor" },
+                        placeholder: "#{t '.default' }: " + setting.default_value(locale) %>
+                    <% when "color" %>
+                      <%= f.input :string, as: :color %>
+                    <% else %>
+                      <%= f.input :string, as: :string, placeholder: "#{t '.default' }: " + setting.default_value(locale) %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <a href="#" class="member_link update_link"
+                          data-id="#setting_<%= setting.id %>">
+                <%=t '.update' %>
+              </a>
+              <span class="saved-state"><%=t '.saved' %></span>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
