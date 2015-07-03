@@ -15,7 +15,7 @@ module ActiveadminSettings
                   'image/jpg',
                   'image/pjpeg',
                   'image/tiff',
-                  'image/x-png'
+                  'image/x-png',
                   'image/svg+xml' ]
 
   mattr_accessor :image_file_types
