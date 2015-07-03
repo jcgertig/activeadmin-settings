@@ -10,11 +10,11 @@
 
   <% groups.each do |g| %>
     <div id="<%= g[:slug] %>" class="settings_table_container">
-      <%= render :partial => "settings_table", :locals => { :slug => g[:slug], :settings => g[:settings]} %>
+      <%= render partial: "settings_table", locals: { slug: g[:slug], settings: g[:settings] } %>
     </div>
   <% end %>
 
   <div id="admins">
-    <%= render :partial => "admins_table", :locals => {:admins => admins} %>
+    <%= render partial: "admins_table", locals: { admins: admins } %>
   </div>
 </div>

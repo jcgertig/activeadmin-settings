@@ -21,9 +21,26 @@ ru:
         default: 'По умолчанию'
         update: 'Обновить'
         saved: 'Сохранено'
+  settings:
+    admin:
+      credentials: 'Данные для входа'
+      are_you_sure: 'Вы уверенны?'
+      delete: 'Удалить'
+      update: 'Обновить'
+      cancel: 'Отменить'
+    admin_form:
+      new_admin: 'Новый Администратор'
+      create: 'Создать'
+      cancel: 'Отменить'
+    index:
+      admins: 'Администраторы'
+    settings_table:
+      default: 'По умолчанию'
+      update: 'Обновить'
+      saved: 'Сохранено'
   activerecord:
     models:
-      activeadmin_settings/setting: 
+      activeadmin_settings/setting:
         one: 'Настройка'
         few: 'Настройки'
         many: 'Настройки'

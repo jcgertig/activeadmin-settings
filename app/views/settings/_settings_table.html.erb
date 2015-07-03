@@ -3,7 +3,9 @@
     <ul class="tabs table_tools_segmented_control">
       <% I18n.available_locales.each do |locale| %>
         <li>
-          <a class="table_tools_button" href="#<%= slug %>-<%= locale %>"><%=t locale, scope: [:locales] %></a>
+          <a class="table_tools_button" href="#<%= slug %>-<%= locale %>">
+            <%=t locale, scope: [:locales] %>
+          </a>
         </li>
       <% end %>
     </ul>
@@ -11,11 +13,7 @@
 
   <% I18n.available_locales.each do |locale| %>
     <div id="<%= slug %>-<%= locale %>">
-      <table  border="0"
-              cellspacing="0"
-              cellpadding="0"
-              id="settings"
-              class="index_table index">
+      <table id="settings" border="0" cellspacing="0" cellpadding="0" class="index_table index">
         <thead>
           <tr>
             <th><%= ActiveadminSettings::Setting.human_attribute_name(:name) %></th>
@@ -49,15 +47,15 @@
                     <% when "color" %>
                       <%= f.input :string, as: :color %>
                     <% else %>
-                      <%= f.input :string, as: :string, placeholder: "#{t '.default' }: " + setting.default_value(locale) %>
+                      <%= f.input :string, as: :string,
+                        placeholder: "#{t '.default' }: " + setting.default_value(locale) %>
                     <% end %>
                   <% end %>
                 <% end %>
               </div>
             </td>
             <td>
-              <a href="#" class="member_link update_link"
-                          data-id="#setting_<%= setting.id %>">
+              <a href="#" class="member_link update_link" data-id="#setting_<%= setting.id %>">
                 <%=t '.update' %>
               </a>
               <span class="saved-state"><%=t '.saved' %></span>

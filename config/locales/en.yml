@@ -21,9 +21,25 @@ en:
         default: 'Default'
         update: 'Update'
         saved: 'Saved'
+  settings:
+    admin:
+      credentials: 'Credentials'
+      are_you_sure: 'Are you sure?'
+      delete: 'Delete'
+      update: 'Update'
+      cancel: 'Cancel'
+    admin_form:
+      new_admin: 'New Admin'
+      create: 'Create'
+      cancel: 'Cancel'
+    index:
+      admins: 'Administrators'
+    settings_table:
+      default: 'Default'
+      update: 'Update'
   activerecord:
     models:
-      activeadmin_settings/setting: 
+      activeadmin_settings/setting:
         one: 'Setting'
         few: 'Settings'
         many: 'Settings'
