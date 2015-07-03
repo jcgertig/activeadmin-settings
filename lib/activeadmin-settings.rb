@@ -15,11 +15,12 @@ module ActiveadminSettings
                   'image/jpg',
                   'image/pjpeg',
                   'image/tiff',
-                  'image/x-png' ]
+                  'image/x-png'
+                  'image/svg+xml' ]
 
   mattr_accessor :image_file_types
-  @@image_file_types = ["jpg", "jpeg", "png", "gif", "tiff"]
-  
+  @@image_file_types = ["jpg", "jpeg", "png", "gif", "tiff", "svg"]
+
   mattr_accessor :config_file
   @@config_file = "config/activeadmin_settings.yml"
 

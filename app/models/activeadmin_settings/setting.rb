@@ -19,7 +19,7 @@ module ActiveadminSettings
       def initiate_setting(name, locale = nil)
         locale ||= I18n.default_locale
         setting = self.new(name: name, locale: locale.to_s)
-        if setting.type == "text" or setting.type == "html"
+        if setting.type == "text" or setting.type == "html" or setting.type == "color"
           setting.string = setting.default_value
         end
         setting.save
