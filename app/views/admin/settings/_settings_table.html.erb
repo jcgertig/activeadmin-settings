@@ -33,7 +33,7 @@
             <td>
               <div class="form <%= setting.type %>">
                 <%= semantic_form_for setting, method: :put, url: "/admin/settings/#{setting.id}" do |f| %>
-                  <%= f.inputs, class: "" do %>
+                  <%= f.inputs do %>
                     <%= f.input :locale, as: :hidden, input_html: { value: locale } %>
                     <% case setting.type %>
                     <% when "file" %>
