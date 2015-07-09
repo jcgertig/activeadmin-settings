@@ -13,7 +13,7 @@ Easy to use general purpose settings backend for activeadmin.
 
 Add to `Gemfile`:
 
-    gem "activeadmin-settings"
+    gem "activeadmin-settings", github: "jcgertig/activeadmin-settings"
 
 Run installer:
 
@@ -26,7 +26,6 @@ Add i18n configuration to `config/application.rb` file:
 
 #### ActiveRecord
 
-    gem "aws-s3"
     gem "fog"
     gem "mini_magick"
     gem "carrierwave"
@@ -44,7 +43,6 @@ Run migrations:
 
 If you're using mongoid 2.x the gem expects to see **activeadmin-mongoid** and **carrierwave-mongoid** (for image uploading feature) in Gemfile. Here is a working example:
 
-    gem "aws-s3"
     gem "fog"
     gem "mini_magick"
     gem "carrierwave-mongoid"
@@ -65,7 +63,6 @@ Here is an example of Gemfile with a support of 3.x version:
     gem 'mongoid',  '~> 3.0.5'
 
     # Assets
-    gem 'aws-s3'
     gem 'fog'
     gem 'mini_magick'
     gem 'carrierwave-mongoid',  git:      'git://github.com/jnicklas/carrierwave-mongoid.git',
@@ -113,6 +110,11 @@ Some examples:
         description:    Please make sure logo image size is 287x140 pixels
         default_value:  home/home-logo.jpg
 
+      Base Color:
+        type:           color
+        description:    The main layout color
+        default_value:  '#DDDDDD'
+
       CEO Message:
         type:           html
         description:    This text is used for the "CEO Message" page
@@ -134,12 +136,20 @@ Some examples:
           ru: Russian default title
           de: German default title
 
-Settings could be integrated into templates as well as models or controllers code using `settings_value` helper. For example:
+Settings can be integrated into templates as well as models or controllers code using `settings_value` helper. For example:
 
 * `<%= settings_value("CEO Message") %>` - provides html
 * `<%= settings_value("CEO Message", :de) %>` - provides localized html for German language
 * `<%= image_tag setting_value("Logo Image") %>` - provides an image url: `<img src="/production-assets-path/home/home-logo.jpg" />`
 * `<%= settings_value("Facebook Link") %>` - provides link: `<a href="https://www.facebook.com/" title="Facebook">Facebook</a>`
+
+They can be used in a controller or modle like so:
+
+```ruby
+include ActiveadminSettings::Helpers
+
+@main_color = settings_value("Base Color")
+```
 
 
 If setting value is `null` or an empty string default setting value is used which is defined in `config/activeadmin_settings.yml`. If locale is not specified, default is used.

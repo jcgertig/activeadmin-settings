@@ -47,7 +47,7 @@
                     <% when "color" %>
                       <%= f.input :string, as: :color %>
                     <% when "boolean" %>
-                      <%= f.input :bool, as: :boolean %>
+                      <%= f.input :bool, as: :boolean, lable: false %>
                     <% else %>
                       <%= f.input :string, as: :string,
                         placeholder: "#{t '.default' }: " + setting.default_value(locale) %>
