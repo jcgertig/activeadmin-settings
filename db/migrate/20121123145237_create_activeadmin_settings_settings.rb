@@ -3,6 +3,7 @@ class CreateActiveadminSettingsSettings < ActiveRecord::Migration
     create_table :activeadmin_settings_settings do |t|
       t.string :name
       t.text   :string
+      t.boolean :bool
       t.string :file
 
       t.timestamps

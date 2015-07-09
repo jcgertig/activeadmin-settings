@@ -98,6 +98,8 @@ To add some settings go to `config/activeadmin_settings.yml`. Settings are split
 There are a few types of settings:
 
 * `string` (default) - a regular text input
+* `color` - a color selector
+* `boolean` - a checkbox
 * `link` - text input with a format: `(TITLE) URL`
 * `text` - textarea input
 * `html` - textarea with [redactor.js](http://redactorjs.com/)
@@ -122,12 +124,12 @@ Some examples:
         type:           link
         description:    Company facebook page link
         default_value:  (Facebook) https://www.facebook.com/
- 
+
     Localization Example:
       Welcome title:
         type:           string
         description:    Localized welcome title
-        default_value: 
+        default_value:
           en: English default title
           ru: Russian default title
           de: German default title
@@ -147,7 +149,6 @@ If setting value is `null` or an empty string default setting value is used whic
 
 I'm going to add types:
 
-* `Boolean` - checkbox or dropdown with two values
 * `Dropdown` - dropdown with options
 * `List` - list bases selection
 

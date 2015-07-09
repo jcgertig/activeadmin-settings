@@ -4,18 +4,18 @@ class ActiveadminSettings::AdminUsersController < ApplicationController
   def update
     @object = AdminUser.find(params[:id])
     if @object.update_attributes(permitted_params[:admin_user])
-      render :text => "ok"
+      render text: "ok"
     else
-      render :text => @object.errors.to_json, :status => :unprocessable_entity
+      render text: @object.errors.to_json, status: :unprocessable_entity
     end
   end
 
   def create
     @object = AdminUser.new(permitted_params[:admin_user])
     if @object.save
-      render :partial => "admin/settings/admin", :locals => {:admin => @object}, :layout => false
+      render partial: "admin/settings/admin", locals: {admin: @object}, layout: false
     else
-      render :text => @object.errors.to_json, :status => :unprocessable_entity
+      render text: @object.errors.to_json, status: :unprocessable_entity
     end
   end
 
@@ -32,11 +32,11 @@ class ActiveadminSettings::AdminUsersController < ApplicationController
     else
       params.permit admin_user: [:email, :password, :password_confirmation]
     end
-  end 
+  end
 
   private
 
   def authenticate!
-    send ActiveAdmin.application.authentication_method 
+    send ActiveAdmin.application.authentication_method
   end
 end

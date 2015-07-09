@@ -4,9 +4,9 @@ class ActiveadminSettings::SettingsController < ApplicationController
   def update
     @object = ActiveadminSettings::Setting.find(params[:id])
     if @object.update_attributes(permitted_params[:setting])
-      render :text => @object.value
+      render text: @object.value
     else
-      render :text => "error"
+      render text: "error"
     end
   end
 
@@ -15,13 +15,13 @@ class ActiveadminSettings::SettingsController < ApplicationController
     if Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
       params
     else
-      params.permit setting: [:name, :string, :file, :remove_file, :locale]
+      params.permit setting: [:name, :string, :bool, :file, :remove_file, :locale]
     end
-  end 
+  end
 
   private
 
-  def authenticate!
-    send ActiveAdmin.application.authentication_method 
-  end
+    def authenticate!
+      send ActiveAdmin.application.authentication_method
+    end
 end

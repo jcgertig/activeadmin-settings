@@ -22,6 +22,9 @@ module ActiveadminSettings
         if setting.type == "text" or setting.type == "html" or setting.type == "color"
           setting.string = setting.default_value
         end
+        if setting.type == "boolean"
+          setting.bool = (setting.default_value == "true")
+        end
         setting.save
         setting
       end
@@ -58,6 +61,7 @@ module ActiveadminSettings
     def value
       val = respond_to?(type) ? send(type).to_s : send(:string).to_s
       val = default_value if val.empty?
+      return val if type == "boolean"
       val.html_safe
     end
 
@@ -73,14 +77,14 @@ module ActiveadminSettings
       field :name
 
       translates do
-        field :string, :default => ""
+        field :string, default: ""
         fallbacks_for_empty_translations!
       end
 
       include SettingMethods
 
       def self.value(name, locale)
-        find_or_create_by(:name => name, :locale => (locale || I18n.locale)).value
+        find_or_create_by(name: name, locale: (locale || I18n.locale)).value
       end
     end
   else
@@ -88,11 +92,11 @@ module ActiveadminSettings
       include SettingMethods
 
       unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-        attr_accessible :name, :string, :file, :remove_file, :locale
+        attr_accessible :name, :string, :bool, :file, :remove_file, :locale
       end
 
       def self.value(name, locale)
-        find_or_create_by(:name => name, :locale => (locale || I18n.locale)).value
+        find_or_create_by(name: name, locale: (locale || I18n.locale)).value
       end
     end
   end
