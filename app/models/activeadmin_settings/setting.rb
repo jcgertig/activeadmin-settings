@@ -3,11 +3,6 @@ module ActiveadminSettings
     def self.included(base)
       base.mount_uploader  :file, ActiveadminSettings::SettingsFileUploader
 
-      # Validators
-      # base.validates_presence_of   :name
-      # base.validates_uniqueness_of :name, scope: :locale
-      # base.validates_length_of     :name, minimum: 1
-
       base.validates :name, presence: true, uniqueness: { scope: :locale }, length: { minimum: 1 }
 
       base.extend ClassMethods
@@ -60,7 +55,7 @@ module ActiveadminSettings
 
     def value
       val = (type == "boolean") ? send("bool") : (respond_to?(type) ? send(type).to_s : send(:string).to_s)
-      val = default_value if val.empty?
+      val = default_value if val.to_s.empty?
       val.html_safe
     end
 
