@@ -56,6 +56,7 @@ module ActiveadminSettings
     def value
       val = (type == "boolean") ? send("bool") : (respond_to?(type) ? send(type).to_s : send(:string).to_s)
       val = default_value if val.to_s.empty?
+      return val if type == "boolean"
       val.html_safe
     end
 
