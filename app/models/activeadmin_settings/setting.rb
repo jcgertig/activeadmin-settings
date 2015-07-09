@@ -1,7 +1,7 @@
 module ActiveadminSettings
   module SettingMethods
     def self.included(base)
-      base.mount_uploader  :file, ActiveadminSettings::SettingsFileUploader
+      base.mount_uploader :file, ActiveadminSettings::SettingsFileUploader
 
       base.validates :name, presence: true, uniqueness: { scope: :locale }, length: { minimum: 1 }
 
