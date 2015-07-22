@@ -4,7 +4,7 @@
   overflow: visible;
   background-color: #fff;
 
-  .redactor_box textarea {
+  textarea {
     background-color: #fff;
     display: block;
     width: 100% !important;
@@ -105,7 +105,7 @@ body .redactor_box_fullscreen {
   line-height: 0 !important;
   list-style: none !important;
   font-size: 0;
-  background: #f1f1f1;
+  // background: #f1f1f1;
   // background: -moz-linear-gradient(top,  #f1f1f1 0%, #e2e2e2 100%);
   // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1f1f1), color-stop(100%,#e2e2e2));
   // background: -webkit-linear-gradient(top,  #f1f1f1 0%,#e2e2e2 100%);
@@ -185,7 +185,14 @@ body .redactor_air .redactor_toolbar {
   BUTTONS
   step 25px
 */
-body .redactor_toolbar li a                             { background-color: none; }
+body .redactor_toolbar li a                             {
+                                                          background-color: none;
+                                                          padding: 0px;
+
+                                                          &:hover {
+                                                            background: none;
+                                                          }
+                                                        }
 body .redactor_toolbar li a.redactor_btn_html           { background-position: 0px; }
 body .redactor_toolbar li a.redactor_btn_formatting     { background-position: -25px; }
 body .redactor_toolbar li a.redactor_btn_bold           { background-position: -50px; }
