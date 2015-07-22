@@ -1,4 +1,4 @@
-//= require redactor
+@import "redactor"
 //= require_self
 
 #settings {
@@ -7,11 +7,11 @@
 
   .update_link { display: none; }
   .saved-state { display:none; }
-  
+
   .option-type-html {
     .update_link { display: inline; }
   }
-  
+
   tr td .form {
     .label  { display:none; }
 
