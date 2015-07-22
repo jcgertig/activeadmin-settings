@@ -186,11 +186,10 @@ body .redactor_air .redactor_toolbar {
   step 25px
 */
 body .redactor_toolbar li a                             {
-                                                          background-color: none;
-                                                          padding: 0px;
+                                                          padding: 0px !important;
 
                                                           &:hover {
-                                                            background: none;
+                                                            background: none !important;
                                                           }
                                                         }
 body .redactor_toolbar li a.redactor_btn_html           { background-position: 0px; }
